@@ -1,0 +1,10 @@
+{
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"newFeature": true
+	},
+	"appid": "wx8742868a9a9ffbbe",
+	"projectname": "quiz",
+	"condition": {}
+}
