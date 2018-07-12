@@ -9,65 +9,74 @@ Page({
   data: {
     title: '',
     option: [],
-    title_cnt: 0, //题目计数
     lFlag: false,
     style: '单选题',
-    hidden: false
+    answer: '',
+    id: '',
+    cnt: 0,
+    max_cnt: 10,
   },
-  
+
+  // 答案选择,获取用户选择的单选框的值
+  radioChange: function(e) {
+
+    var arr = this.data.option
+    var item = e.detail.value
+
+    this.setData({
+      answer: e.detail.value,
+      id: arr.indexOf(item)
+    })
+  },
+
   getQuiz() {
     wx.showLoading({
       title: '加载题目',
     })
+    if (this.data.cnt === this.data.max_cnt) {
+      wx.showLoading({
+        title: '正在提交结果...',
+      })
 
-    qcloud.request({
-      url: config.service.getQuiz,
-      success: result => {
-        wx.hideLoading()
-        let data = result.data.data
+      wx.navigateTo({
+        url: '../result/result',
+      })
+      wx.hideLoading()
+    } else {
+      qcloud.request({
+        url: config.service.getQuiz,
+        success: result => {
+          wx.hideLoading()
+          let data = result.data.data
 
-        var temp = data.options.replace("[", "")
+          var temp = data.options.replace("[", "")
 
-        temp = temp.replace("]", "")
+          temp = temp.replace("]", "")
 
-        var options = temp.split(",")
+          var options = temp.split(",")
+          var cnt = this.data.cnt
+          cnt += 1
+          this.setData({
+            title: data.title,
+            option: options,
+            cnt: cnt,
+            lFlag: true
+          })
+        },
 
-        var cnt = this.data.title_cnt
-        cnt += 1
-        this.setData({
-          title: data.title,
-          option: options,
-          title_cnt: cnt,
-          lFlag: true
-        })
-      },
-
-      fail: () => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '题目列表加载错误',
-        })
-        this.setDataP({
-          lFlag: true,
-        })
-      }
-    })
-  },
-
-  radioChange: function (e) {
-    var checked = e.detail.value
-    var changed = {}
-    console.log(checked)
-    for (var i = 0; i < this.data.option.length; i++) {
-      if (checked.indexOf(this.data.option[i]) !== -1) {
-        changed['option[' + i + '].checked'] = true
-      } else {
-        changed['option[' + i + '].checked'] = false
-      }
+        fail: () => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '题目列表加载错误',
+          })
+          this.setDataP({
+            lFlag: true,
+          })
+        }
+      })
     }
-    console.log(changed)
-    this.setData(changed)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -86,6 +95,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+
   },
 
   /**

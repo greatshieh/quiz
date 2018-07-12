@@ -1,7 +1,7 @@
 <!-- person.wxml -->
 
 <view class="{{lFlag ? 'view_show' : 'view_hide'}}">
-  <text class="cnt">第{{title_cnt}}题</text>
+  <text class="cnt">第{{cnt}}题</text>
 </view>
 
 
@@ -14,17 +14,12 @@
     {{item}}
   </view> -->
   <view class="{{style==='单选题' ? 'section section_gap' : 'view_hide'}}">
-    <radio-group class="group" bindchange="radioChange">
-      <view class="label-2" wx:for="{{option}}" wx:key="*this">
-        <radio id="{{item}}" hidden value="{{item}}" checked="{{item.checked}}"></radio>
-        <view class="label-2__icon">
-          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
-        </view>
-        <label class="label-2__text" for="{{item.name}}">
-          <text>{{item}}</text>
-        </label>
-      </view>
+    <radio-group class="option" bindchange="radioChange">
+      <label class="radio" wx:for="{{option}}" wx:key="index">
+        <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" /> {{item}}
+      </label>
     </radio-group>
+
   </view>
 </view>
 
@@ -43,10 +38,6 @@
   </checkbox-group>
 </view>
 
-
-
-
-
 <view class="{{lFlag ? 'view_show' : 'view_hide'}}">
-  <button class="next" size='default' type="primary" bindtap='getQuiz'>下一题</button>
+  <button class="next" size='default' type="primary" bindtap='getQuiz'>{{cnt < max_cnt ? "下一题" : "提交结果"}}</button>
 </view>
