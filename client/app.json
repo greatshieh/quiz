@@ -1,13 +1,13 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/addCgi/addCgi"
+        "pages/person/person",
+    "pages/home/home"
   ],
   "window":{
-    "backgroundColor":"#F6F6F6",
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle":"black"
+    "backgroundColor": "#052152",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3883FA",
+    "navigationBarTitleText": "知识竞赛",
+    "navigationBarTextStyle": "white"
   }
 }

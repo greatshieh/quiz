@@ -21,7 +21,10 @@ var config = {
         tunnelUrl: `${host}/weapp/tunnel`,
 
         // 上传图片接口
-        uploadUrl: `${host}/weapp/upload`
+        uploadUrl: `${host}/weapp/upload`,
+
+        // 获取院校列表
+        getQuiz: `${host}/weapp/get_quiz`,
     }
 };
 

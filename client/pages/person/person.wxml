@@ -1,0 +1,7 @@
+<view class="quiz" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class='title'>
+    <text>{{title}}</text>
+  </view>
+  
+  <view class='option' wx:for="{{option}}">{{item}}</view>
+</view>

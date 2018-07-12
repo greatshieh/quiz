@@ -1,0 +1,63 @@
+/**index.wxss**/
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.userinfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16rpx;
+  width: 90%;
+  margin-top: 5rpx;
+  /* margin: 0 auto; */
+  background-color: #155fd8;
+  border-radius: 10rpx;
+  color: white;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #f6f6f6;
+  display: block;
+}
+
+.view_hide {
+  display: none;
+}
+
+.view_show {
+  display: block;
+}
+
+.challenge-type {
+  position: relative;
+  flex: 1;
+  margin-top: 5rpx;
+  display: flex;
+}
+
+.challenge-type image {
+  display: block;
+  width: 700rpx;
+  height: 400rpx;
+  border-radius: 1%;
+}
+
+.challenge-type text {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  font-size: 50px;
+}
