@@ -10,7 +10,9 @@ Page({
     title: '',
     option: [],
     title_cnt: 0, //题目计数
-    lFlag: false
+    lFlag: false,
+    style: '单选题',
+    hidden: false
   },
   
   getQuiz() {
@@ -52,7 +54,20 @@ Page({
     })
   },
 
-
+  radioChange: function (e) {
+    var checked = e.detail.value
+    var changed = {}
+    console.log(checked)
+    for (var i = 0; i < this.data.option.length; i++) {
+      if (checked.indexOf(this.data.option[i]) !== -1) {
+        changed['option[' + i + '].checked'] = true
+      } else {
+        changed['option[' + i + '].checked'] = false
+      }
+    }
+    console.log(changed)
+    this.setData(changed)
+  },
   /**
    * 生命周期函数--监听页面加载
    */

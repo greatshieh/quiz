@@ -10,10 +10,42 @@
     <text>{{title}}</text>
   </view>
 
-  <view class='option' wx:for="{{option}}" wx:key="*this">
+  <!-- <view class='option' wx:for="{{option}}" wx:key="*this">
     {{item}}
+  </view> -->
+  <view class="{{style==='单选题' ? 'section section_gap' : 'view_hide'}}">
+    <radio-group class="group" bindchange="radioChange">
+      <view class="label-2" wx:for="{{option}}" wx:key="*this">
+        <radio id="{{item}}" hidden value="{{item}}" checked="{{item.checked}}"></radio>
+        <view class="label-2__icon">
+          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+        </view>
+        <label class="label-2__text" for="{{item.name}}">
+          <text>{{item}}</text>
+        </label>
+      </view>
+    </radio-group>
   </view>
 </view>
+
+<view class="{{style==='多选题' ? 'section section_gap' : 'view_hide'}}">
+  <view class="section__title">表单组件在label内</view>
+  <checkbox-group class="group" bindchange="checkboxChange">
+    <view class="label-1" wx:for="{{option}}" wx:key="*this">
+      <label>
+        <checkbox hidden value="{{item.name}}" checked="{{item.checked}}"></checkbox>
+        <view class="label-1__icon">
+          <view class="label-1__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+        </view>
+        <text class="label-1__text">{{item.value}}</text>
+      </label>
+    </view>
+  </checkbox-group>
+</view>
+
+
+
+
 
 <view class="{{lFlag ? 'view_show' : 'view_hide'}}">
   <button class="next" size='default' type="primary" bindtap='getQuiz'>下一题</button>
