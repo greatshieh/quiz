@@ -1,3 +1,5 @@
+/*person.wxss  */
+
 page {
   background: #f6f6f6;
   display: flex;
@@ -5,16 +7,44 @@ page {
   justify-content: flex-start;
 }
 
-.quiz{
-  margin:100rpx;
+.cnt {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: 50px;
 }
 
-.quiz .title{
-  margin-left: 50rpx;
+.view_hide {
+  display: none;
+}
+
+.view_show {
+  display: block;
+}
+
+.quiz {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 50rpx;
   margin-bottom: 50rpx;
 }
 
-.quiz .option{
+.quiz .title {
+  /* margin-left: 20rpx; */
+  margin-bottom: 50rpx;
+}
+
+.quiz .option {
   margin-top: 10px;
-  margin-left: 70rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  font-size: 30px;
+}
+
+.next {
+  width: 70%;
+  position: fixed;
+  bottom: 5rpx;
+  left: 15%;
 }

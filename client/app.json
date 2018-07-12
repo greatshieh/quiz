@@ -1,9 +1,11 @@
 {
-  "pages":[
-        "pages/person/person",
-    "pages/home/home"
+  "pages": [
+    "pages/person/person",
+    "pages/home/home",
+    "pages/result/result"
+    
   ],
-  "window":{
+  "window": {
     "backgroundColor": "#052152",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3883FA",

@@ -1,7 +1,20 @@
-<view class="quiz" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+<!-- person.wxml -->
+
+<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
+  <text class="cnt">第{{title_cnt}}题</text>
+</view>
+
+
+<view class="quiz">
   <view class='title'>
     <text>{{title}}</text>
   </view>
-  
-  <view class='option' wx:for="{{option}}">{{item}}</view>
+
+  <view class='option' wx:for="{{option}}" wx:key="*this">
+    {{item}}
+  </view>
+</view>
+
+<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
+  <button class="next" size='default' type="primary" bindtap='getQuiz'>下一题</button>
 </view>
