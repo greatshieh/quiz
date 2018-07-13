@@ -23,7 +23,7 @@ var config = {
         // 上传图片接口
         uploadUrl: `${host}/weapp/upload`,
 
-        // 获取院校列表
+        // 获取题目
         getQuiz: `${host}/weapp/get_quiz`,
     }
 };

@@ -6,7 +6,7 @@
 
     <!--未登录时，显示按钮，登录后隐藏  -->
     <view class="{{logged ? 'view_hide' : 'view_show'}}">
-      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">点击登陆</button>
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onTapLogin">点击登陆</button>
     </view>
 
     <!--登陆后，显示用户头像和用户名  -->

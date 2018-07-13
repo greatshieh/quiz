@@ -23,7 +23,7 @@
   </view>
 </view>
 
-<view class="{{style==='多选题' ? 'section section_gap' : 'view_hide'}}">
+<!-- <view class="{{style==='多选题' ? 'section section_gap' : 'view_hide'}}">
   <view class="section__title">表单组件在label内</view>
   <checkbox-group class="group" bindchange="checkboxChange">
     <view class="label-1" wx:for="{{option}}" wx:key="*this">
@@ -36,7 +36,7 @@
       </label>
     </view>
   </checkbox-group>
-</view>
+</view> -->
 
 <view class="{{lFlag ? 'view_show' : 'view_hide'}}">
   <button class="next" size='default' type="primary" bindtap='getQuiz'>{{cnt < max_cnt ? "下一题" : "提交结果"}}</button>
