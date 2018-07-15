@@ -1,1 +1,7 @@
-<text>100分</text>
+<text>{{score}}</text>
+<view class='section'>
+  <view class='btn'>
+    <button size='mini' type='primary'>分享成绩</button>
+    <button size='mini' type='primary'>再次挑战</button>
+  </view>
+</view>

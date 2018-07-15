@@ -1,0 +1,11 @@
+.section {
+  background: #f6f6f6;
+  display: flex;
+}
+
+
+.btn{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}

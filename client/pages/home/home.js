@@ -6,9 +6,7 @@ Page({
   data: {
     userInfo: null,
     logged: false,
-    avatarUrl: '',
-    takeSession: false,
-    requestResult: ''
+    avatarUrl: ''
   },
 
   // 获取用户信息
@@ -18,7 +16,8 @@ Page({
         userInfo
       }) => {
         this.setData({
-          userInfo: userInfo
+          userInfo: userInfo,
+          logged: true
         })
       },
       error: () => {}
@@ -48,7 +47,8 @@ Page({
         userInfo
       }) => {
         this.setData({
-          userInfo
+          userInfo,
+          logged: true
         })
       }
     })

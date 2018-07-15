@@ -39,7 +39,7 @@ page {
   margin-top: 10px;
   margin-left: 50rpx;
   margin-right: 50rpx;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .next {
