@@ -1,11 +1,35 @@
 .section {
-  background: #f6f6f6;
+  display: block;
+  height: 100%;
+  width: 100%;
+  
+}
+
+.result {
   display: flex;
+  height: 1100rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 
-.btn{
+.score {
+  color: red;
+}
+
+.score .value{
+  font-size: 100rpx;
+}
+
+
+.btn {
+  margin: 0rpx 50rpx;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+}
+
+.btn button {
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }

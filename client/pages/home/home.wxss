@@ -14,7 +14,6 @@ page {
   padding: 16rpx;
   width: 90%;
   margin-top: 5rpx;
-  /* margin: 0 auto; */
   background-color: #155fd8;
   border-radius: 10rpx;
   color: white;
@@ -51,7 +50,8 @@ page {
 .challenge-type image {
   display: block;
   width: 700rpx;
-  height: 400rpx;
+  height: 300rpx;
+  overflow: hidden;
   border-radius: 1%;
 }
 

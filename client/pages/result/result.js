@@ -7,6 +7,23 @@ Page({
     score:0
   },
 
+  // 将答题情况保存到服务器
+  recordeScore(){
+
+  },
+
+  backtoindex(){
+    wx.redirectTo({
+      url: '../home/home'
+    })
+  },
+
+  backtochallenge(){
+    wx.redirectTo({
+      url: '../person/person',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

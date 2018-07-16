@@ -1,54 +1,77 @@
-/*person.wxss  */
+Page {
+  background-color: #bbb;
+}
 
-page {
-  background: #f6f6f6;
+.row-1 {
+  height: 90vh;
+  background-color: #ccc;
   display: flex;
+}
+
+.rule {
+  margin: 0 auto;
+  display: flex;
+  background-color: #fff;
   flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
 }
 
-.cnt {
+.rule .text-1 {
+  margin-top: 50rpx;
+  font-size: 100rpx;
+  margin-bottom: 30rpx;
+}
+
+.rule .text-2 {
+  margin: 0 100rpx;
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  font-size: 40px;
-  font-weight: 50px;
-}
-
-.view_hide {
-  display: none;
-}
-
-.view_show {
-  display: block;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  font-size: 50rpx;
+  white-space:pre-line;
 }
 
 .quiz {
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  margin-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  margin: 0 100rpx;
+}
+
+.quiz .cnt {
+  align-self: center;
+  font-size: 100rpx;
   margin-bottom: 50rpx;
 }
 
 .quiz .title {
-  /* margin-left: 20rpx; */
+  /* align-self: center; */
+  font-size: 40rpx;
   margin-bottom: 50rpx;
 }
 
-.quiz .option {
-  margin-top: 10px;
-  margin-left: 50rpx;
-  margin-right: 50rpx;
-  font-size: 20px;
-}
-
-.next {
-  width: 70%;
-  position: fixed;
-  bottom: 5rpx;
-  left: 15%;
+.option{
+    display: flex;
+    flex-direction: column;
 }
 
 .radio{
   display: flex;
+  flex-direction: row;
+}
+
+.start-btn {
+  height: 10vh;
+  display: flex;
+  background-color: #ddd;
+}
+
+.start-btn button {
+  margin: 5rpx auto;
+  height: 80%;
+}
+
+.view-hidden {
+  display: none;
 }

@@ -34,4 +34,8 @@ router.post('/message', controllers.message.post)
 
 // GET 获取题目
 router.get('/get_quiz', controllers.searchquiz.quiz)
+
+// POST 上传答题成绩
+router.post('/result', validationMiddleware, controllers.uploadresult.add)
+
 module.exports = router

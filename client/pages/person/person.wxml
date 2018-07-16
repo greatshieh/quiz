@@ -1,43 +1,39 @@
-<!-- person.wxml -->
-
-<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
-  <text class="cnt">第{{cnt}}题</text>
-</view>
-
-
-<view class="quiz">
-  <view class='title'>
-    <text>{{title}}</text>
-  </view>
-
-  <!-- <view class='option' wx:for="{{option}}" wx:key="*this">
-    {{item}}
-  </view> -->
-  <view class="{{style==='单选题' ? 'section section_gap' : 'view_hide'}}">
-    <radio-group class="option" bindchange="radioChange">
-      <label class="radio" wx:for="{{option}}" wx:key="index">
-        <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" /> {{item}}
-      </label>
-    </radio-group>
-
-  </view>
-</view>
-
-<!-- <view class="{{style==='多选题' ? 'section section_gap' : 'view_hide'}}">
-  <view class="section__title">表单组件在label内</view>
-  <checkbox-group class="group" bindchange="checkboxChange">
-    <view class="label-1" wx:for="{{option}}" wx:key="*this">
-      <label>
-        <checkbox hidden value="{{item.name}}" checked="{{item.checked}}"></checkbox>
-        <view class="label-1__icon">
-          <view class="label-1__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
-        </view>
-        <text class="label-1__text">{{item.value}}</text>
-      </label>
+<!--文字区域  -->
+<view class="row-1">
+  <!--规则说明  -->
+  <view class="{{start ? 'rule' : 'view-hidden'}}">
+    <text class='text-1'>挑战规则</text>
+    <view class='text-2' wx:for="{{description}}" wx:key="*this">
+      <text>{{item}}</text>
     </view>
-  </checkbox-group>
-</view> -->
+  </view>
+  <!--题目描述  -->
+  <view class="{{start ? 'view-hidden' : 'quiz'}}">
 
-<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
-  <button class="next" size='default' type="primary" bindtap='getQuiz'>{{cnt < max_cnt ? "下一题" : "提交结果"}}</button>
+    <text class="cnt">第{{cnt+1}}题</text>
+
+    <view class='title'>
+      <text>{{title}}</text>
+    </view>
+
+    <view class="{{style==='单选题' ? 'option' : 'view_hide'}}">
+      <radio-group bindchange="radioChange">
+        <label class="radio" wx:for="{{option}}" wx:key="index">
+          <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" /> {{item}}
+        </label>
+      </radio-group>
+
+    </view>
+  </view>
+</view>
+
+<!--按钮区域  -->
+<view class="{{start ? 'start-btn' : 'view-hidden'}} ">
+  <button size='default' type="primary" bindtap='begin'>开始挑战</button>
+  <button size='default' type="primary" bindtap='quit'>退出挑战</button>
+</view>
+
+<view class="{{start ? 'view-hidden' : 'challeng-btn'}} ">
+  <button class="next" size='default' type="primary" bindtap="next">{{cnt+1
+    < max_cnt ? "下一题" : "提交结果"}}</button>
 </view>

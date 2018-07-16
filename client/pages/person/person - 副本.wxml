@@ -1,0 +1,43 @@
+<!-- person.wxml -->
+<!--规则说明  -->
+<view class="{{start ? 'view_hide' : 'rule'}}">
+  <text class='em'>挑战规则</text>
+  <text> 1. 挑战共10题</text>
+  <text> 2. XXXXXXXXXXXX</text>
+  <text> 3. XXXXXXXXXXXX</text>
+  <text> 4. XXXXXXXXXXXX</text>
+  <text> 5. XXXXXXXXXXXX</text>
+</view>
+
+<view class="{{start ? 'view_hide' : 'btn'}}">
+  <button class="next" size='default' type="primary">开始挑战</button>
+  <button class="next" size='default' type="primary">放弃挑战</button>
+</view>
+
+
+<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
+  <text class="cnt">第{{cnt+1}}题</text>
+</view>
+
+<view class="quiz">
+  <view class='title'>
+    <text>{{title}}</text>
+  </view>
+
+  <!-- <view class='option' wx:for="{{option}}" wx:key="*this">
+    {{item}}
+  </view> -->
+  <view class="{{style==='单选题' ? 'section section_gap' : 'view_hide'}}">
+    <radio-group class="option" bindchange="radioChange">
+      <label class="radio" wx:for="{{option}}" wx:key="index">
+        <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" /> {{item}}
+      </label>
+    </radio-group>
+
+  </view>
+</view>
+
+<view class="{{lFlag ? 'view_show' : 'view_hide'}}">
+  <button class="next" size='default' type="primary" bindtap='getQuiz'>{{cnt
+    < max_cnt ? "下一题" : "提交结果"}}</button>
+</view>

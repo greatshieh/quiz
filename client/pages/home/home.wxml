@@ -18,8 +18,21 @@
   <!--个人挑战  -->
   <view class="challenge-type">
     <navigator url='../person/person' open-type='redirectTo'>
-    <image src="../../image/home/person.jpg"></image>
-    <text>个人挑战</text>
+      <image src="../../image/home/person.jpg"></image>
+      <text>个人挑战</text>
+    </navigator>
+
+  </view>
+  <view class="challenge-type">
+    <navigator url='../person/person' open-type='redirectTo'>
+      <image src="../../image/home/person.jpg"></image>
+      <text>排行榜</text>
+    </navigator>
+  </view>
+    <view class="challenge-type">
+    <navigator url='../person/person' open-type='redirectTo'>
+      <image src="../../image/home/person.jpg"></image>
+      <text>成绩分析</text>
     </navigator>
   </view>
 </view>

@@ -25,6 +25,9 @@ var config = {
 
         // 获取题目
         getQuiz: `${host}/weapp/get_quiz`,
+
+        // 上传成绩
+        uploadReuslt: `${host}/weapp/result`,
     }
 };
 
