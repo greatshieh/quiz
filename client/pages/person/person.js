@@ -9,10 +9,8 @@ var result = {
   3: "D",
   4: "E",
   5: "F",
-  'null': 'null'
+  none: 'null'
 }
-
-var answerList = []
 
 Page({
 
@@ -26,11 +24,12 @@ Page({
     start: true, //规则说明页面
     style: '单选题', //题目类型
     answer: '', //选择的答案
-    id: 'null', //选择答案的id
+    id: 'none', //选择答案的id
     score: 0, //题目的分数
     cnt: 0, //题目计数，并作为题目出现的索引
     max_cnt: 10,
-    description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾']
+    description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'],
+    answerList: []
     // std_answer: ''
   },
 
@@ -78,8 +77,6 @@ Page({
     var cnt = this.data.cnt
 
     //判断答案是否正确
-    //Todo
-
     this.calcScore()
 
     if (cnt < max_cnt - 1) {
@@ -87,7 +84,7 @@ Page({
       this.chooseTopic(cnt)
     } else {
       //上传成绩到服务器
-      this.uploadResult()
+      this.uploadresult()
 
       //重定向到提交结果页面
       wx.redirectTo({
@@ -98,21 +95,21 @@ Page({
   },
 
   // 上传成绩到服务器
-  uploadResult() {
+  uploadresult() {
     wx.showLoading({
       title: '计算成绩...',
     })
 
+    console.log(this.data.answerList)
     qcloud.request({
       url: config.service.uploadReuslt,
       login: true,
       method: 'POST',
       data: {
-        list: [answerList]
+        list: this.data.answerList
       },
       success: result => {
         wx.hideLoading()
-
         let data = result.data
 
         if (!data.code) {
@@ -128,7 +125,6 @@ Page({
       },
       fail: () => {
         wx.hideLoading()
-
         wx.showToast({
           icon: 'none',
           title: '成绩计算失败',
@@ -155,24 +151,20 @@ Page({
     var cnt = this.data.cnt
     var choosed_id = this.data.id
 
-    //保存选择的答案到quizList
-    var temp = {
-      'id': 0,
-      'choosed': 'NULL'
-    }
-    temp['id'] = data[cnt].id
-    temp['choosed'] = result[choosed_id]
+    //保存选择的答案到quizList   
+    var id = "answerList[" + cnt +"].id"
+    var choosed = "answerList[" + cnt + "].choosed"
 
-    answerList.push(temp)
-
-    console.log(choosed_id)
+    this.setData({
+      [id]: data[cnt].id,
+      [choosed]: result[choosed_id]
+    })
 
     // 记录分数
     if (result[choosed_id] === data[cnt].answer) {
       //结果正确
       app.data.total_score += data[cnt].scort
     }
-    console.log(app.data.total_score)
   },
 
   getQuiz() {
@@ -187,7 +179,7 @@ Page({
       success: result => {
         wx.hideLoading()
         let data = result.data.data
-        console.log(data)
+
         this.setData({
           quizList: data,
         })
@@ -221,6 +213,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    app.data.total_score = 0
     this.getQuiz()
   },
 
