@@ -8,27 +8,30 @@ module.exports = {
 
     //获取用户openid
     let user = ctx.state.$wxInfo.userinfo.openId
-    let topicList = ctx.request.body.list || []
+    
+    let score = ctx.request.body.list.pop()
+    
+    let topicList = ctx.request.body.list
 
     // 插入答题表至 user 表
-    let order = await DB.query('insert into order_user(user) values (?)', [user])
+    let order = await DB.query('insert into order_user(user, total_score) values (?, ?)', [user, score])
 
     // 插入订单至 order_product 表
     // 从插入user表返回的数据中获取此次答题的id
     let orderId = order.insertId
-    let sql = 'INSERT INTO order_product (order_id, topic_id, choosed_answer) VALUES '
+    let sql = 'INSERT INTO order_product (order_id, topic_id, choosed_answer, shoot) VALUES '
 
     // 插入时所需要的数据和参数
     let query = []
     let param = []
 
-    topicList.forEach(element => {
+    topicList[0].forEach(element => {
 
-      query.push('(?, ?, ?)')
-      //     param.push([orderId, element.id, element.choosed])
+      query.push('(?, ?, ?, ?)')
       param.push(orderId)
       param.push(element.id)
       param.push(element.choosed)
+      param.push(element.shoot)
     })
 
     await DB.query(sql + query.join(', '), param)

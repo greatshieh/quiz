@@ -1,1 +1,6 @@
-{"navigationBarTitleText": "挑战成绩"}
+{
+  "navigationBarTitleText": "挑战成绩",
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
+}

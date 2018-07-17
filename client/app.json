@@ -1,10 +1,9 @@
 {
   "pages": [
+    
     "pages/home/home",
     "pages/person/person",
     "pages/result/result"
-    
-        
   ],
   "window": {
     "backgroundColor": "#052152",

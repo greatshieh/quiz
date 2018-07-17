@@ -5,10 +5,34 @@
       <text class='value'>{{score}}</text>
       <text>分</text>
     </view>
+
+    <text>一共挑战</text>
+    <view class='score'>
+      <text class='value'>{{cnt}}</text>
+      <text>次</text>
+    </view>
+
+        <text>最高分</text>
+    <view class='score'>
+      <text class='value'>{{maximum}}</text>
+      <text>分</text>
+    </view>
+
+        <text>最低分</text>
+    <view class='score'>
+      <text class='value'>{{minimum}}</text>
+      <text>分</text>
+    </view>
   </view>
 
+
+
+  <!-- <view class="container">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view> -->
+
   <view class='btn'>
-    <button size='mini' type='primary'>炫耀一下</button>
+    <button size='mini' type='primary' bindtap='onShareAppMessage'>炫耀一下</button>
     <button size='mini' type='primary' bindtap='backtochallenge'>再次挑战</button>
     <button size='mini' type='primary' bindtap='backtoindex'>返回首页</button>
   </view>

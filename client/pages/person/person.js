@@ -29,7 +29,8 @@ Page({
     cnt: 0, //题目计数，并作为题目出现的索引
     max_cnt: 10,
     description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'],
-    answerList: []
+    answerList: [],
+    second: 10
     // std_answer: ''
   },
 
@@ -40,7 +41,13 @@ Page({
     })
 
     this.chooseTopic(this.data.cnt)
+
+    const backgroundAudioManager = wx.getBackgroundAudioManager()
+
+    backgroundAudioManager.src = 'http://dl.stream.qqmusic.qq.com/C400003MM10C2vVBYS.m4a?vkey=4FD695E1F630382A27C58522D1C768EEF27BFC86C83A5386BD0F374A65CDD2E7CC22316043F4349CB8247B73EA280126CA5E602D8845ED95&guid=1577361444&uin=20322475&fromtag=66' // 设置了 src 之后会自动播放
   },
+
+
 
   //退出挑战，返回首页
   quit() {
@@ -65,10 +72,12 @@ Page({
       title: data.title,
       option: options,
       cnt: cnt,
+      second: 10,
       // lFlag: true,
       // std_answer: data.answer,
       score: data.scort
     })
+    Countdown(this)
   },
 
   //选择下一题
@@ -87,9 +96,11 @@ Page({
       this.uploadresult()
 
       //重定向到提交结果页面
-      wx.redirectTo({
-        url: '../result/result',
-      })
+      setTimeout(function() {
+        wx.redirectTo({
+          url: '../result/result',
+        })
+      }, 2000)
     }
 
   },
@@ -97,31 +108,30 @@ Page({
   // 上传成绩到服务器
   uploadresult() {
     wx.showLoading({
-      title: '计算成绩...',
+      title: '正在提交成绩...',
     })
 
-    console.log(this.data.answerList)
     qcloud.request({
       url: config.service.uploadReuslt,
       login: true,
       method: 'POST',
       data: {
-        list: this.data.answerList
+        list: [this.data.answerList, app.data.total_score]
       },
       success: result => {
-        wx.hideLoading()
-        let data = result.data
+        // wx.hideLoading()
+        // let data = result.data
 
-        if (!data.code) {
-          wx.showToast({
-            title: '成绩计算成功',
-          })
-        } else {
-          wx.showToast({
-            icon: 'none',
-            title: '成绩计算失败',
-          })
-        }
+        // if (!data.code) {
+        //   wx.showToast({
+        //     title: '成绩计算成功',
+        //   })
+        // } else {
+        //   wx.showToast({
+        //     icon: 'none',
+        //     title: '成绩计算失败',
+        //   })
+        // }
       },
       fail: () => {
         wx.hideLoading()
@@ -152,8 +162,9 @@ Page({
     var choosed_id = this.data.id
 
     //保存选择的答案到quizList   
-    var id = "answerList[" + cnt +"].id"
+    var id = "answerList[" + cnt + "].id"
     var choosed = "answerList[" + cnt + "].choosed"
+    var shoot = "answerList[" + cnt + "].shoot"
 
     this.setData({
       [id]: data[cnt].id,
@@ -164,6 +175,13 @@ Page({
     if (result[choosed_id] === data[cnt].answer) {
       //结果正确
       app.data.total_score += data[cnt].scort
+      this.setData({
+        [shoot]: data[cnt].scort
+      })
+    } else {
+      this.setData({
+        [shoot]: 0
+      })
     }
   },
 
@@ -265,4 +283,19 @@ Page({
   onShareAppMessage: function() {
 
   }
-})
+});
+
+function Countdown(that) {
+  var second = that.data.second
+
+  if (second == 0) {
+    that.next()
+  } else {
+    setTimeout(function() {
+      that.setData({
+        second: second - 1
+      })
+      Countdown(that);
+    }, 1000);
+  }
+};

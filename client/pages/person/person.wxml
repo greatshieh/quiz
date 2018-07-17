@@ -9,7 +9,7 @@
   </view>
   <!--题目描述  -->
   <view class="{{start ? 'view-hidden' : 'quiz'}}">
-
+    <text style='font-size: 50rpx'>本题剩余时间: {{second}} 秒</text>
     <text class="cnt">第{{cnt+1}}题</text>
 
     <view class='title'>

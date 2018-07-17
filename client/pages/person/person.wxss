@@ -1,17 +1,11 @@
-Page {
-  background-color: #bbb;
-}
-
 .row-1 {
   height: 90vh;
-  background-color: #ccc;
   display: flex;
 }
 
 .rule {
   margin: 0 auto;
   display: flex;
-  background-color: #fff;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -64,7 +58,6 @@ Page {
 .start-btn {
   height: 10vh;
   display: flex;
-  background-color: #ddd;
 }
 
 .start-btn button {
