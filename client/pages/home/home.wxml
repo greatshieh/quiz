@@ -6,10 +6,10 @@
 
     <!--未登录时，显示按钮，登录后隐藏  -->
     <view class="{{logged ? 'view_hide' : 'view_show'}}">
-      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onTapLogin">点击登陆</button>
+      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onTapLogin">点击登录</button>
     </view>
 
-    <!--登陆后，显示用户头像和用户名  -->
+    <!--登录后，显示用户头像和用户名  -->
     <view class="{{logged ? 'view_show' : 'view_hide'}}">
       <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
     </view>
@@ -30,7 +30,7 @@
     </navigator>
   </view>
     <view class="challenge-type">
-    <navigator url='../person/person' open-type='redirectTo'>
+    <navigator url='../analysis/analysis' open-type='navigate'>
       <image src="../../image/home/person.jpg"></image>
       <text>成绩分析</text>
     </navigator>

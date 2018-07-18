@@ -15,12 +15,24 @@ Page({
       success: ({
         userInfo
       }) => {
+        console.log("session-key有效")
         this.setData({
           userInfo: userInfo,
           logged: true
         })
+        // 保存用户信息到缓存
+        wx.setStorage({
+          key: 'userinfo',
+          data: userInfo,
+        })
       },
-      error: () => {}
+      error: () => {
+        console.log("session-key无效")
+        wx.showModal({
+          title: '没有登录',
+          content: '',
+        })
+      }
     })
   },
 
@@ -41,7 +53,13 @@ Page({
     })
   },
 
-  onTapLogin: function() {
+  onTapLogin: function(e) {
+    // this.setData({
+    //   userInfo: e.detail.userInfo,
+    //   logged: true
+    // })
+
+    // 保存到用户信息到缓存
     this.doQcloudLogin({
       success: ({
         userInfo
@@ -51,6 +69,10 @@ Page({
           logged: true
         })
       }
+    })
+    wx.setStorage({
+      key: 'userinfo',
+      data: e.detail.userInfo,
     })
   },
 

@@ -1,0 +1,3 @@
+<view>
+{{userInfo.nickName}}的成绩分析
+</view>

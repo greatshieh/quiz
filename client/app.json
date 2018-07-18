@@ -3,7 +3,8 @@
     
     "pages/home/home",
     "pages/person/person",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/analysis/analysis"
   ],
   "window": {
     "backgroundColor": "#052152",
