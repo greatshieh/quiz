@@ -13,7 +13,6 @@ var result = {
 }
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -27,11 +26,11 @@ Page({
     id: 'none', //选择答案的id
     score: 0, //题目的分数
     cnt: 0, //题目计数，并作为题目出现的索引
-    max_cnt: 10,
-    description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'],
+    max_cnt: 10, //测试题目数量
+    description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'], //测试规则
     answerList: [],
-    second: 10
-    // std_answer: ''
+    second: 10, //计时器初始值
+    restart: false,
   },
 
   // 开始挑战
@@ -40,11 +39,17 @@ Page({
       start: false
     })
 
+    // 选择题目
     this.chooseTopic(this.data.cnt)
 
+    // 启动计时器
+    Countdown(this)
+
+    // 背景音乐设置
     const backgroundAudioManager = wx.getBackgroundAudioManager()
 
-    backgroundAudioManager.src = 'http://dl.stream.qqmusic.qq.com/C400003MM10C2vVBYS.m4a?vkey=4FD695E1F630382A27C58522D1C768EEF27BFC86C83A5386BD0F374A65CDD2E7CC22316043F4349CB8247B73EA280126CA5E602D8845ED95&guid=1577361444&uin=20322475&fromtag=66' // 设置了 src 之后会自动播放
+    // 背景音乐链接, 设置了 src 之后会自动播放
+    backgroundAudioManager.src = 'http://dl.stream.qqmusic.qq.com/C400003MM10C2vVBYS.m4a?vkey=4FD695E1F630382A27C58522D1C768EEF27BFC86C83A5386BD0F374A65CDD2E7CC22316043F4349CB8247B73EA280126CA5E602D8845ED95&guid=1577361444&uin=20322475&fromtag=66'
   },
 
 
@@ -59,6 +64,7 @@ Page({
     })
   },
 
+  // 选择题目
   chooseTopic(cnt) {
     var data = this.data.quizList[cnt]
 
@@ -73,25 +79,54 @@ Page({
       option: options,
       cnt: cnt,
       second: 10,
-      // lFlag: true,
-      // std_answer: data.answer,
       score: data.scort
     })
-    Countdown(this)
   },
 
   //选择下一题
-  next() {
+  next(event) {
     var max_cnt = this.data.max_cnt
     var cnt = this.data.cnt
 
     //判断答案是否正确
     this.calcScore()
 
+    // 题目循环
     if (cnt < max_cnt - 1) {
+      // 没有达到最大测试数量
+
+      // 题目计数+1
       cnt++
+
+      if (this.data.restart) {
+        //没有点击动作发生，计时器自动重启，重置restart为false
+        this.setData({
+          restart: false,
+          second: 10
+        })
+      }
+
+      if (event) {
+        //  点击动作发生，重启计时器
+
+        // 重置计时器
+        this.setData({
+          second: 10
+        })
+        // 清除计时器
+        clearTimeout(timer)
+      }
+
+      // 启动计时器
+      Countdown(this)
+
+      // 选择题目
       this.chooseTopic(cnt)
+
     } else {
+      //测试完成，关闭计时器
+      clearTimeout(timer)
+
       //上传成绩到服务器
       this.uploadresult()
 
@@ -119,19 +154,6 @@ Page({
         list: [this.data.answerList, app.data.total_score]
       },
       success: result => {
-        // wx.hideLoading()
-        // let data = result.data
-
-        // if (!data.code) {
-        //   wx.showToast({
-        //     title: '成绩计算成功',
-        //   })
-        // } else {
-        //   wx.showToast({
-        //     icon: 'none',
-        //     title: '成绩计算失败',
-        //   })
-        // }
       },
       fail: () => {
         wx.hideLoading()
@@ -285,17 +307,25 @@ Page({
   }
 });
 
+
+var timer;
+
 function Countdown(that) {
   var second = that.data.second
 
   if (second == 0) {
+    //自动重启
+    that.setData({
+      restart: true
+    })
     that.next()
   } else {
-    setTimeout(function() {
+    console.log(second)
+    timer = setTimeout(function() {
       that.setData({
         second: second - 1
       })
-      Countdown(that);
-    }, 1000);
+      Countdown(that)
+    }, 1000)
   }
 };
