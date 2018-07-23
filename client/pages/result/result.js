@@ -58,8 +58,6 @@ Page({
 
     scoreList = scoreList.sort(function (a, b) { return b - a })
 
-    console.log(scoreList)
-
     //测试的次数
     var length = scoreList.length
 
@@ -69,7 +67,6 @@ Page({
       minimum: scoreList.pop()  //最低分
     })
 
-    console.log(this.data.cnt)
   },
 
   onShareAppMessage: function(res) {

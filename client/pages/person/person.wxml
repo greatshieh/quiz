@@ -23,14 +23,18 @@
       <text>{{title}}</text>
     </view>
 
-    <view class="{{style==='单选题' ? 'option' : 'view_hide'}}">
-      <radio-group bindchange="radioChange">
-        <label class="radio" wx:for="{{option}}" wx:key="index">
-          <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" color='#ccdfe5'/> {{item}}
+    <radio-group bindchange="radioChange">
+      <view class="label-2" wx:for="{{option}}" wx:key="index">
+        <radio value="{{item.value}}" hidden id="{{item.value}}" checked="{{item.checked}}" />
+        <view class="label-2__icon">
+          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+        </view>
+        <label class="label-2__text" for="{{item.value}}">
+          <text>{{item.value}}</text>
         </label>
-      </radio-group>
+      </view>
+    </radio-group>
 
-    </view>
   </view>
 </view>
 

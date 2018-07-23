@@ -21,15 +21,13 @@ Page({
     quizList: [], //从服务器获得的所有题目
     option: [], //选项列表
     start: true, //规则说明页面
-    style: '单选题', //题目类型
     answer: '', //选择的答案
-    id: 'none', //选择答案的id
     score: 0, //题目的分数
     cnt: 0, //题目计数，并作为题目出现的索引
     max_cnt: 10, //测试题目数量
     description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'], //测试规则
-    answerList: [],
-    second: 10, //计时器初始值
+    answerList: new Array(10), //所有选择的答案
+    second: 100, //计时器初始值
     restart: false,
   },
 
@@ -72,15 +70,32 @@ Page({
 
     temp = temp.replace("]", "")
 
-    var options = temp.split(",")
+    var radioItem = temp.split(",")
+
+    var options = new Array()
+
+    var i = 0
+    radioItem.forEach(function(element) {
+      options.push({
+        name: result[i],
+        value: element,
+      })
+      i++
+    })
 
     this.setData({
       title: data.title,
       option: options,
       cnt: cnt,
-      second: 10,
+      second: 100,
       score: data.scort
     })
+
+    var answer = {}
+    answer['answerList[' + cnt + '].topic_id'] = data.id
+    answer['answerList[' + cnt + '].choosed_answer'] = null
+    answer['answerList[' + cnt + '].shoot'] = 0
+    this.setData(answer)
   },
 
   //选择下一题
@@ -88,7 +103,7 @@ Page({
     var max_cnt = this.data.max_cnt
     var cnt = this.data.cnt
 
-    //判断答案是否正确
+    //判断答案是否正确并计算得分
     this.calcScore()
 
     // 题目循环
@@ -102,7 +117,7 @@ Page({
         //没有点击动作发生，计时器自动重启，重置restart为false
         this.setData({
           restart: false,
-          second: 10
+          second: 100
         })
       }
 
@@ -111,7 +126,7 @@ Page({
 
         // 重置计时器
         this.setData({
-          second: 10
+          second: 100
         })
         // 清除计时器
         clearTimeout(timer)
@@ -126,16 +141,9 @@ Page({
     } else {
       //测试完成，关闭计时器
       clearTimeout(timer)
-
+      console.log(this.data.answerList)
       //上传成绩到服务器
       this.uploadresult()
-
-      //重定向到提交结果页面
-      setTimeout(function() {
-        wx.redirectTo({
-          url: '../result/result',
-        })
-      }, 2000)
     }
 
   },
@@ -144,8 +152,9 @@ Page({
   uploadresult() {
     wx.showLoading({
       title: '正在提交成绩...',
+      mask: true,
     })
-
+    console.log(this.data.answerList)
     qcloud.request({
       url: config.service.uploadReuslt,
       login: true,
@@ -154,12 +163,22 @@ Page({
         list: [this.data.answerList, app.data.total_score]
       },
       success: result => {
+        wx.redirectTo({
+          url: '../result/result',
+        })
       },
       fail: () => {
         wx.hideLoading()
-        wx.showToast({
-          icon: 'none',
-          title: '成绩计算失败',
+        wx.showModal({
+          title: '没有授权',
+          content: '你没有授权我们使用你的用户信息，因此无法记录挑战成绩。请返回重试。',
+          showCancel:false,
+          confirmText:'返回首页',
+          complete: (res)=>{
+            wx.redirectTo({
+              url: '../home/home',
+            })
+          }
         })
       }
     })
@@ -168,41 +187,46 @@ Page({
 
   // 答案选择,获取用户选择的单选框的值
   radioChange: function(e) {
+    var checked = e.detail.value
+    var changed = {}
     var arr = this.data.option
-    var item = e.detail.value
+    var cnt = this.data.cnt
 
-    this.setData({
-      answer: e.detail.value, //选择的答案
-      id: arr.indexOf(item) //选择答案的索引
-    })
+    var answer = 'answerList[' + cnt + '].choosed_answer'
+
+    for (var i = 0; i < arr.length; i++) {
+      if (checked.indexOf(arr[i].value) !== -1) {
+
+        changed['option[' + i + '].checked'] = true
+
+        // 保存选择的答案到answerList
+        this.setData({
+          [answer]: arr[i].name
+        })
+
+      } else {
+        changed['option[' + i + '].checked'] = false
+      }
+      this.setData(changed)
+
+    }
   },
 
   // 计算总分
   calcScore() {
     var data = this.data.quizList
     var cnt = this.data.cnt
-    var choosed_id = this.data.id
 
-    //保存选择的答案到quizList   
-    var id = "answerList[" + cnt + "].id"
-    var choosed = "answerList[" + cnt + "].choosed"
-    var shoot = "answerList[" + cnt + "].shoot"
+    var checked = this.data.answerList[cnt].choosed_answer
 
-    this.setData({
-      [id]: data[cnt].id,
-      [choosed]: result[choosed_id]
-    })
+    var answer = 'answerList[' + cnt + '].shoot'
 
     // 记录分数
-    if (result[choosed_id] === data[cnt].answer) {
+    if (checked === data[cnt].answer) {
       //结果正确
       app.data.total_score += data[cnt].scort
       this.setData({
-        [shoot]: data[cnt].scort
-      })
-    } else {
-      this.setData({
-        [shoot]: 0
+        [answer]: data[cnt].scort
       })
     }
   },
@@ -211,6 +235,7 @@ Page({
     // 加载题目
     wx.showLoading({
       title: '加载题目',
+      mask: true,
     })
 
     //发送请求，获得所有题目
@@ -223,18 +248,6 @@ Page({
         this.setData({
           quizList: data,
         })
-
-        //获得从服务器得到的题目id
-        var temp = new Array()
-        var topicList = this.data.quizList
-
-        topicList.forEach(function(element) {
-          temp.push(element.id)
-        })
-
-        this.setData({
-          idList: temp
-        })
       },
 
       fail: () => {
@@ -242,7 +255,7 @@ Page({
         wx.showToast({
           title: '题目列表加载错误',
         })
-        this.setDataP({
+        this.setData({
           lFlag: true,
         })
       }
@@ -320,7 +333,6 @@ function Countdown(that) {
     })
     that.next()
   } else {
-    console.log(second)
     timer = setTimeout(function() {
       that.setData({
         second: second - 1

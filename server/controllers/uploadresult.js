@@ -12,7 +12,7 @@ module.exports = {
     let score = ctx.request.body.list.pop()
     
     let topicList = ctx.request.body.list
-
+    console.log(topicList)
     // 插入答题表至 user 表
     let order = await DB.query('insert into order_user(user, total_score) values (?, ?)', [user, score])
 
@@ -26,11 +26,10 @@ module.exports = {
     let param = []
 
     topicList[0].forEach(element => {
-
       query.push('(?, ?, ?, ?)')
       param.push(orderId)
-      param.push(element.id)
-      param.push(element.choosed)
+      param.push(element.topic_id)
+      param.push(element.choosed_answer)
       param.push(element.shoot)
     })
 

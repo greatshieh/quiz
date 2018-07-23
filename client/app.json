@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/person/person",
-    "pages/home/home",
-    
     "pages/result/result",
+    "pages/home/home",
+    "pages/person/person",
     "pages/analysis/analysis"
   ],
   "window": {

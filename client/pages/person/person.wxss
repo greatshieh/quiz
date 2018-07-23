@@ -1,4 +1,4 @@
-page{
+page {
   background-color: #ccdfe5;
 }
 
@@ -48,9 +48,9 @@ page{
   margin: 0 100rpx;
 }
 
-.quiz-timer{
+.quiz-timer {
   font-size: 50rpx;
-  color: #79151A;
+  color: #79151a;
 }
 
 .quiz .cnt {
@@ -71,6 +71,30 @@ page{
   flex-direction: column;
 }
 
+.label-2__icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  background: #ccdfe5;
+  border-radius: 50px;
+}
+
+.label-2__icon-checked {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  background: #1aad19;
+  border-radius: 50%;
+}
+.label-2__text {
+  display: inline-block;
+  vertical-align: middle;
+}
 .radio {
   display: flex;
   flex-direction: row;
