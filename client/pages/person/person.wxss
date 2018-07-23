@@ -1,3 +1,7 @@
+page{
+  background-color: #ccdfe5;
+}
+
 .row-1 {
   height: 90vh;
   display: flex;
@@ -11,20 +15,31 @@
   justify-content: flex-start;
 }
 
-.rule .text-1 {
-  margin-top: 50rpx;
-  font-size: 100rpx;
+.rule-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 90rpx 0 35rpx; */
   margin-bottom: 30rpx;
 }
 
-.rule .text-2 {
+.rule-title-text {
+  font-size: 100rpx;
+}
+
+.list-title-line {
+  width: 21rpx;
+  height: 100rpx;
+}
+
+.rule-content {
   margin: 0 100rpx;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-self: flex-start;
   font-size: 50rpx;
-  white-space:pre-line;
+  white-space: pre-line;
 }
 
 .quiz {
@@ -33,9 +48,15 @@
   margin: 0 100rpx;
 }
 
+.quiz-timer{
+  font-size: 50rpx;
+  color: #79151A;
+}
+
 .quiz .cnt {
   align-self: center;
-  font-size: 100rpx;
+  font-size: 80rpx;
+  margin-top: 50rpx;
   margin-bottom: 50rpx;
 }
 
@@ -45,12 +66,12 @@
   margin-bottom: 50rpx;
 }
 
-.option{
-    display: flex;
-    flex-direction: column;
+.option {
+  display: flex;
+  flex-direction: column;
 }
 
-.radio{
+.radio {
   display: flex;
   flex-direction: row;
 }

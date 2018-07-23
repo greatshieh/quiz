@@ -12,6 +12,7 @@
     <!--登录后，显示用户头像和用户名  -->
     <view class="{{logged ? 'view_show' : 'view_hide'}}">
       <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
+      <!-- <text>当前排名</text> -->
     </view>
   </view>
 

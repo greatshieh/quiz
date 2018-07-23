@@ -2,14 +2,21 @@
 <view class="row-1">
   <!--规则说明  -->
   <view class="{{start ? 'rule' : 'view-hidden'}}">
-    <text class='text-1'>挑战规则</text>
-    <view class='text-2' wx:for="{{description}}" wx:key="*this">
+    <view class="rule-title">
+      <image class='list-title-line' src='../../image/person/line-red.png'></image>
+      <text class='rule-title-text'>挑战规则</text>
+      <image class='list-title-line' src='../../image/person/line-red.png'></image>
+    </view>
+    <view class='rule-content' wx:for="{{description}}" wx:key="*this">
       <text>{{item}}</text>
     </view>
   </view>
+
   <!--题目描述  -->
   <view class="{{start ? 'view-hidden' : 'quiz'}}">
-    <text style='font-size: 50rpx'>本题剩余时间: {{second}} 秒</text>
+    <!-- 计时器 -->
+    <text class='quiz-timer'>本题剩余时间: {{second}} 秒</text>
+
     <text class="cnt">第{{cnt+1}}题</text>
 
     <view class='title'>
@@ -19,7 +26,7 @@
     <view class="{{style==='单选题' ? 'option' : 'view_hide'}}">
       <radio-group bindchange="radioChange">
         <label class="radio" wx:for="{{option}}" wx:key="index">
-          <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" /> {{item}}
+          <radio value="{{item}}" data-id="{{index}}" checked="{{item.checked}}" color='#ccdfe5'/> {{item}}
         </label>
       </radio-group>
 
