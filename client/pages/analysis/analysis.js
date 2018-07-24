@@ -1,5 +1,8 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
+var echart = require('../../utils/echarts.js')
+
+const app = getApp()
 
 Page({
 
@@ -7,19 +10,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: null,
+    quizSequence: [],
+    scoreList: [],
+    cnt: [],
+    total: 0,
+    ec: {
+      // 将 lazyLoad 设为 true 后，需要手动初始化图表
+      lazyLoad: true
+    }
   },
 
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    // 读取用户信息
+  readStorage: function() {
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
-        console.log(res.data)
         this.setData({
           userInfo: res.data
         })
@@ -39,77 +44,55 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 生命周期函数--监听页面加载
    */
-  onReady: function() {
+  onLoad: function(options) {
+    // 获取组件
+    this.graphLine = this.selectComponent('#mychart-dom-line');
+    this.graphCycle = this.selectComponent('#mychart-dom-pie');
+    this.graphRadar = this.selectComponent('#mychart-dom-radar');
+    // 读取用户信息
+    this.readStorage()
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  },
-
-  getUserInfo({
-    success,
-    error
-  }) {
-    qcloud.request({
-      url: config.service.requestUrl,
-      login: true,
-      success: result => {
-        let data = result.data
-
-        if (!data.code) {
-          let userInfo = data.data
-
-          success && success({
-            userInfo
-          })
-        } else {
-          error && error()
-        }
-      },
-      fail: () => {
-        error && error()
+    // 获取成绩信息
+    app.getResult({
+      success: ({
+        data
+      }) => {
+        this.parseResult(data)
+        var dataList = this.data.scoreList
+        var xlabel = this.data.cnt
+        // 初始化图表
+        echart.init_chart(this.graphLine, echart.graphLine, ['成绩趋势图', xlabel, dataList]);
+        echart.init_chart(this.graphCycle, echart.graphCycle, []);
+        echart.init_chart(this.graphRadar, echart.graphRadar, []);
       }
     })
   },
-})
+
+  parseResult: function(res) {
+    // 测试顺序排名
+    var quizSequence = new Array()
+
+    // 所有测试分数集合
+    var scoreList = new Array()
+
+    // 测试次数计数
+    var cnt = new Array()
+    var i = 1
+    res.forEach(function(element) {
+      cnt.push('第' + i + '次')
+      quizSequence.push(element.id)
+      scoreList.push(element.total_score)
+      i++
+    })
+
+    this.setData({
+      quizSequence: quizSequence,
+      scoreList: scoreList,
+      cnt: cnt,
+      total: cnt.length
+    })
+  },
+
+});

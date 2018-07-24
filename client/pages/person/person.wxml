@@ -15,9 +15,13 @@
   <!--题目描述  -->
   <view class="{{start ? 'view-hidden' : 'quiz'}}">
     <!-- 计时器 -->
-    <text class='quiz-timer'>本题剩余时间: {{second}} 秒</text>
+    <view class='timer'>
+      <text>本题剩余时间: {{second}} 秒</text>
+    </view>
 
-    <text class="cnt">第{{cnt+1}}题</text>
+    <view class='cnt'>
+      <text>第{{cnt+1}}题</text>
+    </view>
 
     <view class='title'>
       <text>{{title}}</text>

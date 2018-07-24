@@ -1,1 +1,6 @@
-{"navigationBarTextStyle": "成绩分析"}
+{
+  "navigationBarTextStyle": "成绩分析",
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
+}

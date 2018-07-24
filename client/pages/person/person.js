@@ -24,10 +24,10 @@ Page({
     answer: '', //选择的答案
     score: 0, //题目的分数
     cnt: 0, //题目计数，并作为题目出现的索引
-    max_cnt: 10, //测试题目数量
+    max_cnt: 20, //测试题目数量
     description: ['1. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '2. 壹贰叁肆伍陆柒捌玖拾', '3. 壹贰叁肆伍陆柒捌玖拾', '4. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾', '5. 壹贰叁肆伍陆柒捌玖拾壹贰叁肆伍陆柒捌玖拾'], //测试规则
-    answerList: new Array(10), //所有选择的答案
-    second: 100, //计时器初始值
+    answerList: new Array(20), //所有选择的答案
+    second: 10, //计时器初始值
     restart: false,
   },
 
@@ -87,7 +87,7 @@ Page({
       title: data.title,
       option: options,
       cnt: cnt,
-      second: 100,
+      second: 10,
       score: data.scort
     })
 
@@ -117,7 +117,7 @@ Page({
         //没有点击动作发生，计时器自动重启，重置restart为false
         this.setData({
           restart: false,
-          second: 100
+          second: 10
         })
       }
 
@@ -126,7 +126,7 @@ Page({
 
         // 重置计时器
         this.setData({
-          second: 100
+          second: 10
         })
         // 清除计时器
         clearTimeout(timer)

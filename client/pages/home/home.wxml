@@ -17,7 +17,37 @@
   </view>
 
   <!--个人挑战  -->
-  <view class="challenge-type">
+  <view class="module">
+    <navigator url='../person/person' open-type='redirectTo'>
+      <view class="module-style" style='background-color: #8ec31f'>
+        <text class='text'>个人</text>
+        <text class='text'>挑战</text>
+      </view>
+    </navigator>
+
+    <view class="module-style" style='background-color: #fff89e'>
+      <text class='text'>好友</text>
+      <text class='text'>对战</text>
+    </view>
+
+    <navigator url='../analysis/analysis' open-type='navigate'>
+      <view class="module-style" style='background-color: #005bac'>
+        <text class='text'>成绩</text>
+        <text class='text'>分析</text>
+      </view>
+    </navigator>
+
+    <view class="module-style" style='background-color: #ecbccc'>
+      <text class='text' style='color: #aaaaaa'>暂未</text>
+      <text class='text' style='color: #aaaaaa'>开放</text>
+    </view>
+
+    <view class="module-style" style='background-color: #ba296b'>
+      <text class='text' style='color: #aaaaaa'>暂未</text>
+      <text class='text' style='color: #aaaaaa'>开放</text>
+    </view>
+  </view>
+  <!-- <view class="challenge-type">
     <navigator url='../person/person' open-type='redirectTo'>
       <image src="../../image/home/person.jpg"></image>
       <text>个人挑战</text>
@@ -35,5 +65,5 @@
       <image src="../../image/home/person.jpg"></image>
       <text>成绩分析</text>
     </navigator>
-  </view>
+  </view> -->
 </view>

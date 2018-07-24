@@ -13,10 +13,6 @@ Page({
 
   // 获取用户信息
   onLoad: function(options) {
-
-  },
-
-  onShow: function() {
     app.checkSession({
       success: ({
         userInfo
@@ -32,9 +28,12 @@ Page({
           data: userInfo,
         })
       },
-      error: () => {
-      }
+      error: () => {}
     })
+  },
+
+  onShow: function() {
+
   },
 
 

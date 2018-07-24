@@ -7,9 +7,9 @@ module.exports = {
     var i = 1
 
     // 产生随机数，随机选择一道题
-    while (i < 11) {
+    while (i < 21) {
       var num = Math.random();
-      var id = Math.ceil(num * 402);
+      var id = Math.round(num * 402);
       var location = quizList.indexOf(id)
       if (location == -1 && id < 402) {
         // 题目id没有出现过，并且在所有id中

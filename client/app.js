@@ -96,4 +96,33 @@ App({
       }
     })
   },
+
+
+  getResult({
+    success,
+    error
+  }) {
+    // 加载题目
+    wx.showLoading({
+      title: '加载数据...',
+    })
+
+    //发送请求，获得所有题目
+    qcloud.request({
+      url: config.service.downloadResult,
+      success: result => {
+        wx.hideLoading()
+        let data = result.data.data
+        success && success({
+          data
+        })
+      },
+      fail: () => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '获取数据失败...',
+        })
+      }
+    })
+  },
 })

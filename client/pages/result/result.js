@@ -1,6 +1,8 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
 
+const app = getApp()
+
 Page({
   /**
    * 页面的初始数据
@@ -24,31 +26,8 @@ Page({
     })
   },
 
-  getResult() {
-    // 加载题目
-    wx.showLoading({
-      title: '加载数据...',
-    })
+  parseResult(result) {
 
-    //发送请求，获得所有题目
-    qcloud.request({
-      url: config.service.downloadResult,
-      success: result => {
-        wx.hideLoading()
-        let data = result.data.data
-        this.parseResult(data)
-      },
-      fail: () => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '获取数据失败...',
-        })
-      }
-    })
-  },
-
-  parseResult(result){
-    
     var scoreList = new Array()
 
     //从数据库查询结果中解析所有的成绩
@@ -56,7 +35,9 @@ Page({
       scoreList.push(element.total_score)
     })
 
-    scoreList = scoreList.sort(function (a, b) { return b - a })
+    scoreList = scoreList.sort(function(a, b) {
+      return b - a
+    })
 
     //测试的次数
     var length = scoreList.length
@@ -64,7 +45,7 @@ Page({
     this.setData({
       cnt: length, //测试次数
       maximum: scoreList.shift(), //最高分
-      minimum: scoreList.pop()  //最低分
+      minimum: scoreList.pop() //最低分
     })
 
   },
@@ -92,7 +73,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.getResult()
+    app.getResult({
+      success: ({
+        data
+      }) => {
+        this.parseResult(data)
+      }
+    })
   },
 
   /**

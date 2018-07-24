@@ -40,24 +40,27 @@ page {
   display: block;
 }
 
-.challenge-type {
-  position: relative;
-  flex: 1;
-  margin-top: 5rpx;
+.module {
+  margin: 10rpx 25rpx;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 900rpx;
+  flex-wrap: wrap;
 }
 
-.challenge-type image {
-  display: block;
-  width: 700rpx;
-  height: 300rpx;
-  overflow: hidden;
-  border-radius: 1%;
+.module-style {
+  width: 340rpx;
+  height: 280rpx;
+  /* background-color: #8ec31f; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 15rpx;
 }
 
-.challenge-type text {
-  position: absolute;
-  top: 50%;
-  color: #fff;
-  font-size: 50px;
+.text {
+  font-size: 60rpx;
 }

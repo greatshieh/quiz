@@ -1,3 +1,23 @@
-<view>
-{{userInfo.nickName}}的成绩分析
+<view class='userinfo'>
+  <text>{{userInfo.nickName}}的成绩分析</text>
+</view>
+
+<view class='summary'>
+  <text>截至现在，你共参加{{total}}次测试，成绩概况如下</text>
+</view>
+
+<!-- <view class="graph">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view> -->
+
+<view class="graph">
+  <ec-canvas class='ec' id="mychart-dom-line" ec="{{ ec }}"></ec-canvas>
+</view>
+
+<view class="graph">
+  <ec-canvas class='ec' id="mychart-dom-pie" ec="{{ ec }}"></ec-canvas>
+</view>
+
+<view class="graph">
+  <ec-canvas class='ec' id="mychart-dom-radar" ec="{{ ec }}"></ec-canvas>
 </view>

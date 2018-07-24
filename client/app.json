@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/result/result",
     "pages/home/home",
+    "pages/analysis/analysis",
     "pages/person/person",
-    "pages/analysis/analysis"
+    "pages/result/result",
+    "pages/friends/friends"
+    
   ],
   "window": {
     "backgroundColor": "#052152",

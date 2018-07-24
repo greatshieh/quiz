@@ -1,6 +1,15 @@
 page {
   background-color: #ccdfe5;
 }
+
+.row{
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  border:1px solid #ccc;
+  align-items: center;
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -38,9 +47,6 @@ ec-canvas {
 
 .score {
   color: red;
-}
-
-.score .value{
   font-size: 100rpx;
 }
 

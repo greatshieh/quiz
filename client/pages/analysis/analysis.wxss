@@ -1,0 +1,80 @@
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userinfo {
+  padding: 16rpx;
+  width: 90%;
+  margin-top: 5rpx;
+  background-color: #155fd8;
+  border-radius: 10rpx;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.summary {
+  margin-top: 10rpx;
+  width: 90%;
+  height: auto;
+  /* border: 1px solid #155fd8; */
+}
+
+.summary text {
+  font-size: 30rpx;
+}
+
+.graph {
+  width: 90%;
+  height: 600rpx;
+  display: flex;
+  justify-content: center;
+}
+
+#mychart-dom-bar {
+  width: 1500rpx;
+  height: 100%;
+  margin: 0 0;
+  display: block;
+}
+
+.ec {
+  width: 100%;
+  height: 300px;
+  margin: 0 0;
+  display: block;
+}
+
+/* #mychart-dom-line {
+  width: 100%;
+  height: 300px;
+  margin: 0 0;
+  display: block;
+}
+
+#mychart-dom-pie {
+  width: 100%;
+  height: 300px;
+  margin: 0 0;
+  display: block;
+}
+
+#mychart-dom-pie {
+  width: 100%;
+  height: 300px;
+  margin: 0 0;
+  display: block;
+} */
+
+.text {
+  font-size: 30rpx;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 50%;
+}

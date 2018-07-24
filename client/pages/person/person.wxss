@@ -5,6 +5,10 @@ page {
 .row-1 {
   height: 90vh;
   display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  align-content: center;
 }
 
 .rule {
@@ -45,59 +49,95 @@ page {
 .quiz {
   display: flex;
   flex-direction: column;
-  margin: 0 100rpx;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
+  /* border: 1px solid; */
 }
 
-.quiz-timer {
+.timer {
+  padding: 16rpx;
+  width: 90%;
+  margin-top: 5rpx;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid; */
+}
+
+.timer text {
   font-size: 50rpx;
   color: #79151a;
 }
 
-.quiz .cnt {
-  align-self: center;
-  font-size: 80rpx;
-  margin-top: 50rpx;
-  margin-bottom: 50rpx;
-}
-
-.quiz .title {
-  /* align-self: center; */
-  font-size: 40rpx;
-  margin-bottom: 50rpx;
-}
-
-.option {
+.cnt {
+  padding: 16rpx;
+  width: 90%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  /* border: 1px solid; */
+}
+
+.cnt text {
+  font-size: 80rpx;
+}
+
+.title {
+  padding: 16rpx;
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10rpx;
+  /* border: 1px solid; */
+}
+
+.title text{
+  font-size: 30rpx;
+}
+
+
+.label-2 {
+  padding: 16rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10rpx;
+  /* border: 1px solid; */
+}
+
+.label-2 text{
+  font-size: 30rpx;
 }
 
 .label-2__icon {
-  position: relative;
+  /* position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
-  background: #ccdfe5;
-  border-radius: 50px;
+  margin-right: 10px; */
+  width: 25rpx;
+  height: 25rpx;
+  background-color: #ccdfe5;
+  /* background-color: #000000; */
+  border-radius: 50%;
+  /* margin-top: 10rpx; */
 }
 
 .label-2__icon-checked {
-  position: absolute;
+  /* position: absolute;
   left: 3px;
-  top: 3px;
-  width: 12px;
-  height: 12px;
+  top: 3px; */
+  width: 25rpx;
+  height: 25rpx;
   background: #1aad19;
   border-radius: 50%;
 }
+
 .label-2__text {
-  display: inline-block;
-  vertical-align: middle;
-}
-.radio {
-  display: flex;
-  flex-direction: row;
+  margin-left: 10rpx;
+  font-size: 30rpx;
 }
 
 .start-btn {
