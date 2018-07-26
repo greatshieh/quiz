@@ -1,17 +1,17 @@
 {
-  "pages": [
-    "pages/home/home",
-    "pages/analysis/analysis",
-    "pages/person/person",
-    "pages/result/result",
-    "pages/friends/friends"
-    
-  ],
-  "window": {
-    "backgroundColor": "#052152",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3883FA",
-    "navigationBarTitleText": "知识竞赛",
-    "navigationBarTextStyle": "white"
-  }
+    "pages": [
+        "pages/result/result",
+        "pages/home/home",
+        "pages/analysis/analysis",
+        "pages/person/person",
+        "pages/friends/friends",
+        "pages/review/review"
+    ],
+    "window": {
+        "backgroundColor": "#052152",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#3883FA",
+        "navigationBarTitleText": "知识竞赛",
+        "navigationBarTextStyle": "white"
+    }
 }

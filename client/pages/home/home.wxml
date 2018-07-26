@@ -1,53 +1,53 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- 用户登录测试 -->
-  <view class="userinfo">
-    <image class="userinfo-avatar" src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}" background-size="cover"></image>
+    <!-- 用户登录测试 -->
+    <view class="userinfo">
+        <image class="userinfo-avatar" src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}" background-size="cover"></image>
 
-    <!--未登录时，显示按钮，登录后隐藏  -->
-    <view class="{{logged ? 'view_hide' : 'view_show'}}">
-      <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onTapLogin">点击登录</button>
+        <!--未登录时，显示按钮，登录后隐藏  -->
+        <view class="{{logged ? 'view_hide' : 'view_show'}}">
+            <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onTapLogin">点击登录</button>
+        </view>
+
+        <!--登录后，显示用户头像和用户名  -->
+        <view class="{{logged ? 'view_show' : 'view_hide'}}">
+            <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
+            <!-- <text>当前排名</text> -->
+        </view>
     </view>
 
-    <!--登录后，显示用户头像和用户名  -->
-    <view class="{{logged ? 'view_show' : 'view_hide'}}">
-      <text class='userinfo-nickname'>{{userInfo.nickName}}</text>
-      <!-- <text>当前排名</text> -->
+    <!--个人挑战  -->
+    <view class="module">
+        <navigator url='../person/person' open-type='redirectTo'>
+            <view class="module-style" style='background-color: #8ec31f'>
+                <text class='text'>个人</text>
+                <text class='text'>挑战</text>
+            </view>
+        </navigator>
+
+        <view class="module-style" style='background-color: #fff89e'>
+            <text class='text'>好友</text>
+            <text class='text'>对战</text>
+        </view>
+
+        <navigator url='../analysis/analysis' open-type='navigate'>
+            <view class="module-style" style='background-color: #005bac'>
+                <text class='text'>成绩</text>
+                <text class='text'>分析</text>
+            </view>
+        </navigator>
+        <navigator url='../review/review' open-type='navigate'>
+            <view class="module-style" style='background-color: #ecbccc'>
+                <text class='text' style='color: #aaaaaa'>查看</text>
+                <text class='text' style='color: #aaaaaa'>错题</text>
+            </view>
+        </navigator>
+        <view class="module-style" style='background-color: #ba296b'>
+            <text class='text' style='color: #aaaaaa'>暂未</text>
+            <text class='text' style='color: #aaaaaa'>开放</text>
+        </view>
     </view>
-  </view>
-
-  <!--个人挑战  -->
-  <view class="module">
-    <navigator url='../person/person' open-type='redirectTo'>
-      <view class="module-style" style='background-color: #8ec31f'>
-        <text class='text'>个人</text>
-        <text class='text'>挑战</text>
-      </view>
-    </navigator>
-
-    <view class="module-style" style='background-color: #fff89e'>
-      <text class='text'>好友</text>
-      <text class='text'>对战</text>
-    </view>
-
-    <navigator url='../analysis/analysis' open-type='navigate'>
-      <view class="module-style" style='background-color: #005bac'>
-        <text class='text'>成绩</text>
-        <text class='text'>分析</text>
-      </view>
-    </navigator>
-
-    <view class="module-style" style='background-color: #ecbccc'>
-      <text class='text' style='color: #aaaaaa'>暂未</text>
-      <text class='text' style='color: #aaaaaa'>开放</text>
-    </view>
-
-    <view class="module-style" style='background-color: #ba296b'>
-      <text class='text' style='color: #aaaaaa'>暂未</text>
-      <text class='text' style='color: #aaaaaa'>开放</text>
-    </view>
-  </view>
-  <!-- <view class="challenge-type">
+    <!-- <view class="challenge-type">
     <navigator url='../person/person' open-type='redirectTo'>
       <image src="../../image/home/person.jpg"></image>
       <text>个人挑战</text>

@@ -1,63 +1,60 @@
 page {
-  background-color: #ccdfe5;
+    background-color: #ccdfe5;
 }
 
-.row{
-  height: 100rpx;
-  display: flex;
-  justify-content: center;
-  border:1px solid #ccc;
-  align-items: center;
+.row {
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #ccc;
+    align-items: center;
 }
 
 .container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-} 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
 
 ec-canvas {
-  width: 100%;
-  height: 90%;
+    width: 100%;
+    height: 90%;
 }
 
 .section {
-  display: block;
-  height: 100%;
-  width: 100%;
-  
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 .result {
-  display: flex;
-  height: 1100rpx;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    height: 1100rpx;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
-
 
 .score {
-  color: red;
-  font-size: 100rpx;
+    color: red;
+    font-size: 100rpx;
 }
 
-
 .btn {
-  margin: 0rpx 50rpx;
-  display: flex;
+    margin: 0rpx 50rpx;
+    display: flex;
 }
 
 .btn button {
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
+

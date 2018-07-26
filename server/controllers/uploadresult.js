@@ -26,6 +26,7 @@ module.exports = {
         let param = []
 
         topicList[0].forEach(element => {
+
             query.push('(?, ?, ?, ?, ?)')
             param.push(orderId)
             param.push(element.topic_id)

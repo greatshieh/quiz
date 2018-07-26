@@ -11,14 +11,6 @@ function init_chart(ecComponent, option, args) {
         canvas.setChart(chart);
         chart.setOption(option(args));
 
-        // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
-        // this.chart = chart;
-
-        // this.setData({
-        //   isLoaded: true,
-        //   isDisposed: false
-        // });
-
         // 注意这里一定要返回 chart 实例，否则会影响事件处理等
         return chart;
     });
@@ -159,7 +151,7 @@ function graphRadar(args) {
     var option = {
         title: { text: '知识能力图谱' },
         // backgroundColor: "#ffffff",
-        color: ["#37A2DA", "#FF9F7F"],
+        // color: ["#37A2DA", "#FF9F7F"],
         tooltip: {},
         xAxis: {
             show: false

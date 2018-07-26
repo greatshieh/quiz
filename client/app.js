@@ -5,7 +5,8 @@ let userInfo
 
 App({
   data: {
-    total_score: 0
+    total_score: 0,
+    category_score: new Array()
   },
   onLaunch: function() {
     qcloud.setLoginUrl(config.service.loginUrl)

@@ -1,0 +1,40 @@
+var comment = function(score) {
+    if (score < 72) {
+        var msg = "别哭，下次继续努力，加油！"
+    } else if (score < 84) {
+        var msg = "及格万岁，还需要继续努力呀！"
+    } else if (score < 96) {
+        var msg = "考的不错，离优秀不远了，加油！"
+    } else if (score < 114) {
+        var msg = "这么优秀，小伙伴们都知道吗？"
+    } else {
+        var msg = "你真是令人望尘莫及！"
+    }
+    return msg
+};
+
+var category = function(score) {
+    var low_category = []
+    var median_category = []
+    var high_category = []
+    for (var i = 0; i < score.length; i++) {
+        if((score[i].value/score[i].count)<0.7){
+            low_category.push(score[i].name)
+        } else if ((score[i].value / score[i].count) < 0.9){
+            median_category.push(score[i].name)
+        }else{
+            high_category.push(score[i].name)
+        }
+    }
+
+    var return_value = []
+    if(low_category.length > 0){
+        return
+    }
+    return [low_category.join("，"), median_category.join("，"), high_category.join("，")]
+};
+
+module.exports = {
+    comment: comment,
+    category: category
+}

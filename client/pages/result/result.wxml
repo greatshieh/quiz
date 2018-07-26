@@ -1,21 +1,31 @@
+<wxs src="result.wxs" module="module"/>
+
 <view class='section'>
 
-  <view class='row'>
-    <text>本次挑战的成绩为:</text>
-    <text class='score'>{{score}}</text>
-    <text>分</text>
-    <text>{{ismax? "最高分":""}}</text>
-  </view>
+    <view class='row'>
+        <text>本次挑战的成绩为:</text>
+        <text class='score'>{{score}}</text>
+        <text>分</text>
+        <text>{{ismax? "最高分":""}}</text>
+    </view>
 
-  <view class='row'>
-    <text>一共挑战:</text>
-    <text class='score'>{{cnt}}</text>
-    <text>次</text>
-  </view>
+    <view class='row'>
+        <text class='comment'>{{module.comment(score)}}</text>
+    </view>
 
-  <view class='btn'>
-    <button size='mini' type='primary' bindtap='onShareAppMessage'>炫耀一下</button>
-    <button size='mini' type='primary' bindtap='backtochallenge'>再次挑战</button>
-    <button size='mini' type='primary' bindtap='backtoindex'>返回首页</button>
-  </view>
+    <view class='row'>
+        <text class='comment'>这次考试中，{{module.category(category_score)[2]}}做的非常好,{{module.category(category_score)[1]}}做的还不错,{{module.category(category_score)[0]}}还需要提高。</text>
+    </view>
+
+    <view class='row'>
+        <text>一共挑战:</text>
+        <text class='score'>{{cnt}}</text>
+        <text>次</text>
+    </view>
+
+    <view class='btn'>
+        <button size='mini' type='primary' bindtap='onShareAppMessage'>炫耀一下</button>
+        <button size='mini' type='primary' bindtap='backtochallenge'>再次挑战</button>
+        <button size='mini' type='primary' bindtap='backtoindex'>返回首页</button>
+    </view>
 </view>

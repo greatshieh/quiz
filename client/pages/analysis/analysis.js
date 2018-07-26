@@ -73,10 +73,6 @@ Page({
                 echart.init_chart(this.graphCycle, echart.graphCycle, [data[4]]);
                 echart.init_chart(this.graphRadar, echart.graphRadar, [this.data.category_max, this.data.category_score]);
                 echart.init_chart(this.graphStack, echart.graphStack, [this.data.category, this.data.cnt, data[6]]);
-
-                console.log(this.data.category)
-                console.log(this.data.cnt)
-                console.log(data[6])
             }
         })
     },
@@ -109,7 +105,9 @@ Page({
         this.setData({
             cnt: cnt,
             category_max: category_max,
-            category_score: [{ value: category_score }],
+            category_score: [{
+                value: category_score
+            }],
             category: category,
         })
     },
