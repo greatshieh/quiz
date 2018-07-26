@@ -12,6 +12,7 @@ Page({
     cnt: 0,
     maximum: 0,
     minimum: 0,
+    ismax: false
   },
 
   backtoindex() {
@@ -27,26 +28,17 @@ Page({
   },
 
   parseResult(result) {
-
-    var scoreList = new Array()
-
-    //从数据库查询结果中解析所有的成绩
-    result.forEach(element => {
-      scoreList.push(element.total_score)
-    })
-
-    scoreList = scoreList.sort(function(a, b) {
-      return b - a
-    })
-
-    //测试的次数
-    var length = scoreList.length
-
     this.setData({
-      cnt: length, //测试次数
-      maximum: scoreList.shift(), //最高分
-      minimum: scoreList.pop() //最低分
+      cnt: result[0], //测试次数
+      maximum: result[1], //最高分
+      minimum: result[2] //最低分
     })
+
+    if(this.data.score >= this.data.maximum){
+      this.setData({
+        ismax: true
+      })
+    }
 
   },
 
@@ -81,46 +73,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

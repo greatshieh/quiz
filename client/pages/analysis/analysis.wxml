@@ -21,3 +21,7 @@
 <view class="graph">
   <ec-canvas class='ec' id="mychart-dom-radar" ec="{{ ec }}"></ec-canvas>
 </view>
+
+<view class="graph">
+  <ec-canvas class='ec' id="mychart-dom-stack" ec="{{ ec }}"></ec-canvas>
+</view>

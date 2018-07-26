@@ -95,6 +95,8 @@ Page({
     answer['answerList[' + cnt + '].topic_id'] = data.id
     answer['answerList[' + cnt + '].choosed_answer'] = null
     answer['answerList[' + cnt + '].shoot'] = 0
+    answer['answerList[' + cnt + '].category'] = data.category
+
     this.setData(answer)
   },
 
@@ -141,7 +143,7 @@ Page({
     } else {
       //测试完成，关闭计时器
       clearTimeout(timer)
-      console.log(this.data.answerList)
+
       //上传成绩到服务器
       this.uploadresult()
     }
@@ -269,55 +271,6 @@ Page({
     app.data.total_score = 0
     this.getQuiz()
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 });
 
 
