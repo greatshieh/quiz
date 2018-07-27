@@ -27,16 +27,10 @@
       <text>{{title}}</text>
     </view>
 
-    <radio-group bindchange="radioChange">
-      <view class="label-2" wx:for="{{option}}" wx:key="index">
-        <radio value="{{item.value}}" hidden id="{{item.value}}" checked="{{item.checked}}" />
-        <view class="label-2__icon">
-          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
-        </view>
-        <label class="label-2__text" for="{{item.value}}">
-          <text>{{item.value}}</text>
-        </label>
-      </view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <radio class="radio" wx:for="{{option}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+        <text>{{item.value}}</text>
+      </radio>
     </radio-group>
 
   </view>
@@ -52,3 +46,18 @@
   <button class="next" size='default' type="primary" bindtap="next">{{cnt+1
     < max_cnt ? "下一题" : "提交结果"}}</button>
 </view>
+
+
+      <!-- <label class="label-2" wx:for="{{option}}">
+     <radio class="label-2__icon" value="{{item.name}}" checked="{{item.checked}}"/>
+     <text class="label-2__text">{{item.value}}</text>
+  </label> -->
+      <!-- <view class="label-2" wx:for="{{option}}" wx:key="index">
+        <radio value="{{item.value}}" hidden id="{{item.value}}" checked="{{item.checked}}" />
+        <view class="label-2__icon">
+          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+        </view>
+        <label class="label-2__text" for="{{item.value}}">
+          <text>{{item.value}}</text>
+        </label>
+      </view> -->

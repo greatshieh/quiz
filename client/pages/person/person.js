@@ -126,9 +126,9 @@ Page({
 
                 // 重置计时器
                 this.setData({
-                        second: 10
-                    })
-                    // 清除计时器
+                    second: 10
+                })
+                // 清除计时器
                 clearTimeout(timer)
             }
 
@@ -162,7 +162,7 @@ Page({
             title: '正在提交成绩...',
             mask: true,
         })
-
+        console.log(this.data.answerList)
         qcloud.request({
             url: config.service.uploadReuslt,
             login: true,
@@ -201,23 +201,28 @@ Page({
         var cnt = this.data.cnt
 
         var answer = 'answerList[' + cnt + '].choosed_answer'
+        console.log('radio发生change事件，携带value值为：', e.detail.value)
 
-        for (var i = 0; i < arr.length; i++) {
-            if (checked.indexOf(arr[i].value) !== -1) {
+        this.setData({
+            [answer]: e.detail.value
+        })
 
-                changed['option[' + i + '].checked'] = true
-                console.log(arr[i].name)
-                // 保存选择的答案到answerList
-                this.setData({
-                    [answer]: arr[i].name
-                })
-            } else {
-                changed['option[' + i + '].checked'] = false
-            }
+        // for (var i = 0; i < arr.length; i++) {
+        //     if (checked.indexOf(arr[i].value) !== -1) {
 
-            this.setData(changed)
+        //         changed['option[' + i + '].checked'] = true
 
-        }
+        //         // 保存选择的答案到answerList
+        //         this.setData({
+        //             [answer]: arr[i].name
+        //         })
+        //     } else {
+        //         changed['option[' + i + '].checked'] = false
+        //     }
+
+        // this.setData(changed)
+
+        // }
     },
 
     // 计算总分

@@ -1,155 +1,209 @@
 page {
-  background-color: #ccdfe5;
+    background-color: #ccdfe5;
 }
 
 .row-1 {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  align-content: center;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
 }
 
 .rule {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .rule-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin: 90rpx 0 35rpx; */
-  margin-bottom: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30rpx;
 }
 
 .rule-title-text {
-  font-size: 100rpx;
+    font-size: 100rpx;
 }
 
 .list-title-line {
-  width: 21rpx;
-  height: 100rpx;
+    width: 21rpx;
+    height: 100rpx;
 }
 
 .rule-content {
-  margin: 0 100rpx;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-self: flex-start;
-  font-size: 50rpx;
-  white-space: pre-line;
+    margin: 0 100rpx;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-self: flex-start;
+    font-size: 50rpx;
+    white-space: pre-line;
 }
 
 .quiz {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin: 0 auto;
-  /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .timer {
-  padding: 16rpx;
-  width: 90%;
-  margin-top: 5rpx;
-  display: flex;
-  justify-content: center;
-  /* border: 1px solid; */
+    padding: 16rpx;
+    width: 90%;
+    margin-top: 5rpx;
+    display: flex;
+    justify-content: center;
 }
 
 .timer text {
-  font-size: 50rpx;
-  color: #79151a;
+    font-size: 50rpx;
+    color: #79151a;
 }
 
 .cnt {
-  padding: 16rpx;
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10rpx;
-  margin-bottom: 10rpx;
-  /* border: 1px solid; */
+    padding: 16rpx;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
 }
 
 .cnt text {
-  font-size: 80rpx;
+    font-size: 80rpx;
 }
 
 .title {
-  padding: 16rpx;
-  width: 90%;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10rpx;
-  /* border: 1px solid; */
+    padding: 16rpx;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10rpx;
 }
 
-.title text{
-  font-size: 30rpx;
+.title text {
+    font-size: 30rpx;
 }
 
+.radio-group {
+    padding: 16rpx;
+    width: 680rpx;
+    /* border: 1px solid #1aad19; */
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 10rpx;
+}
+
+
+/* .radio {
+    border: 1px solid #79151a;
+    transform: scale(0.8);
+} */
+
+
+/*  重写 radio 样式  */
+
+
+/* 未选中的 背景样式 */
+
+radio .wx-radio-input {
+    /* 无边框 */
+    border: none;
+    /* 与页面背景颜色相同 */
+    background-color: #ccdfe5;
+    /* 圆角 */
+    border-radius: 50%;
+    /* 尺寸 */
+    width: 30rpx;
+    height: 30rpx;
+}
+
+
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked {
+    border: none;
+    background-color: red;
+}
+
+
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+    border-radius: 50%;
+    /* 圆角 */
+    width: 25rpx;
+    /* 选中后对勾大小，不要超过背景的尺寸 */
+    height: 25rpx;
+    /* 选中后对勾大小，不要超过背景的尺寸 */
+    line-height: 25rpx;
+    text-align: center;
+    font-size: 30rpx;
+    /* 对勾大小 30rpx */
+    color: #fff;
+    /* 对勾颜色 白色 */
+    background: transparent;
+    transform: translate(-50%, -50%) scale(0.8);
+    -webkit-transform: translate(-50%, -50%) scale(0.8);
+}
+
+.radio text {
+    /* margin-left: 10rpx; */
+    font-size: 30rpx;
+}
 
 .label-2 {
-  padding: 16rpx;
-  width: 680rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 10rpx;
-  /* border: 1px solid; */
+    padding: 16rpx;
+    width: 680rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10rpx;
 }
 
-.label-2 text{
-  font-size: 30rpx;
-}
+
+/* .label-2 text {
+    font-size: 30rpx;
+} */
 
 .label-2__icon {
-  /* position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 10px; */
-  width: 25rpx;
-  height: 25rpx;
-  background-color: #ccdfe5;
-  /* background-color: #000000; */
-  border-radius: 50%;
-  /* margin-top: 10rpx; */
+    width: 25rpx;
+    height: 25rpx;
+    background-color: #ccdfe5;
+    border-radius: 50%;
 }
 
 .label-2__icon-checked {
-  /* position: absolute;
-  left: 3px;
-  top: 3px; */
-  width: 25rpx;
-  height: 25rpx;
-  background: #1aad19;
-  border-radius: 50%;
+    width: 25rpx;
+    height: 25rpx;
+    background: #1aad19;
+    border-radius: 50%;
 }
 
 .label-2__text {
-  margin-left: 10rpx;
-  font-size: 30rpx;
+    margin-left: 10rpx;
+    font-size: 30rpx;
 }
 
 .start-btn {
-  height: 10vh;
-  display: flex;
+    height: 10vh;
+    display: flex;
 }
 
 .start-btn button {
-  margin: 5rpx auto;
-  height: 80%;
+    margin: 5rpx auto;
+    height: 80%;
 }
 
 .view-hidden {
-  display: none;
+    display: none;
 }
