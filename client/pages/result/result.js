@@ -61,27 +61,16 @@ Page({
             score: app.data.total_score
         })
 
-        // 组装数据
-        // var category_score = new Array()
-        // for (var key in app.data.category_score) {
-        //     category_score.push(app.data.category_score[key])
-        // }
-
-        this.setData({
-            category_score: app.data.category_score
-        })
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
         app.getResult({
             success: ({
                 data
             }) => {
                 this.parseResult(data)
             }
+        })
+
+        this.setData({
+            category_score: app.data.category_score
         })
     },
 })

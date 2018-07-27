@@ -15,7 +15,7 @@
             <!-- <text>当前排名</text> -->
         </view>
     </view>
-
+    
     <!--个人挑战  -->
     <view class="module">
         <navigator url='../person/person' open-type='redirectTo'>

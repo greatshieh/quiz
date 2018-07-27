@@ -3,11 +3,13 @@ page {
 }
 
 .row {
-    height: 100rpx;
+    /* height: 100rpx; */
+    padding: 16rpx;
     display: flex;
     justify-content: center;
     border: 1px solid #ccc;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .container {
@@ -47,14 +49,27 @@ ec-canvas {
     font-size: 100rpx;
 }
 
-.btn {
-    margin: 0rpx 50rpx;
+.summary {
     display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.summary text {
+    font-size: 30rpx;
+}
+
+.btn {
+    bottom: 0;
+    height: 10vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #123432;
+    width: 100%;
 }
 
 .btn button {
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+    height: 80%;
 }
-

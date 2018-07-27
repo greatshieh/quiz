@@ -54,8 +54,6 @@ Page({
         backgroundAudioManager.src = 'http://dl.stream.qqmusic.qq.com/C400003MM10C2vVBYS.m4a?vkey=4FD695E1F630382A27C58522D1C768EEF27BFC86C83A5386BD0F374A65CDD2E7CC22316043F4349CB8247B73EA280126CA5E602D8845ED95&guid=1577361444&uin=20322475&fromtag=66'
     },
 
-
-
     //退出挑战，返回首页
     quit() {
         this.setData({
@@ -128,9 +126,9 @@ Page({
 
                 // 重置计时器
                 this.setData({
-                    second: 10
-                })
-                // 清除计时器
+                        second: 10
+                    })
+                    // 清除计时器
                 clearTimeout(timer)
             }
 
@@ -208,15 +206,15 @@ Page({
             if (checked.indexOf(arr[i].value) !== -1) {
 
                 changed['option[' + i + '].checked'] = true
-
+                console.log(arr[i].name)
                 // 保存选择的答案到answerList
                 this.setData({
                     [answer]: arr[i].name
                 })
-
             } else {
                 changed['option[' + i + '].checked'] = false
             }
+
             this.setData(changed)
 
         }
@@ -270,7 +268,7 @@ Page({
                 })
 
                 var data = result.data.data[1]
-                for (var key in data){
+                for (var key in data) {
                     totalCount[data[key].name] = data[key].count
                 }
             },
@@ -294,6 +292,15 @@ Page({
         app.data.total_score = 0
         this.getQuiz()
     },
+
+    onReady: function() {
+        // 监听用户截屏，返回到主页
+        wx.onUserCaptureScreen(function(res) {
+            wx.redirectTo({
+                url: '../home/home',
+            })
+        })
+    }
 });
 
 

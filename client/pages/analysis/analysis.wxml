@@ -1,16 +1,27 @@
 <view class='userinfo'>
-  <text>{{userInfo.nickName}}的成绩分析</text>
+    <text>{{userInfo.nickName}}的成绩分析</text>
 </view>
 
 <view class='summary'>
-  <text>截至现在，你共参加{{total}}次测试，成绩概况如下</text>
+    <text>截至现在，你共参加{{total}}次测试，成绩概况如下</text>
 </view>
 
-<!-- <view class="graph">
-  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-</view> -->
+<swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" class="graph">
+    <swiper-item>
+        <ec-canvas ec="{{ ecLine }}"></ec-canvas>
+    </swiper-item>
+    <swiper-item>
+        <ec-canvas ec="{{ ecPie }}"></ec-canvas>
+    </swiper-item>
+    <swiper-item>
+        <ec-canvas ec="{{ ecRadar }}"></ec-canvas>
+    </swiper-item>
+    <swiper-item>
+        <ec-canvas ec="{{ ecStack }}"></ec-canvas>
+    </swiper-item>
+</swiper>
 
-<view class="graph">
+<!-- <view class="graph">
   <ec-canvas class='ec' id="mychart-dom-line" ec="{{ ec }}"></ec-canvas>
 </view>
 
@@ -24,4 +35,4 @@
 
 <view class="graph">
   <ec-canvas class='ec' id="mychart-dom-stack" ec="{{ ec }}"></ec-canvas>
-</view>
+</view> -->

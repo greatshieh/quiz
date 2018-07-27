@@ -27,11 +27,7 @@ var category = function(score) {
         }
     }
 
-    var return_value = []
-    if(low_category.length > 0){
-        return
-    }
-    return [low_category.join("，"), median_category.join("，"), high_category.join("，")]
+    return [low_category, median_category, high_category]
 };
 
 module.exports = {

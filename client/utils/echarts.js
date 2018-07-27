@@ -1,5 +1,7 @@
 import * as echarts from '../ec-canvas/echarts.js';
 
+var option = null
+
 function init_chart(ecComponent, option, args) {
     ecComponent.init((canvas, width, height) => {
         // 获取组件的 canvas、width、height 后的回调函数
@@ -15,6 +17,22 @@ function init_chart(ecComponent, option, args) {
         return chart;
     });
 };
+
+function onInit(canvas, width, height) {
+    // 获取组件的 canvas、width、height 后的回调函数
+    // 在这里初始化图表
+    const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+    });
+    canvas.setChart(chart);
+    chart.setOption(option(args));
+
+    // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+    return chart;
+};
+
+
 
 // 柱状图
 function graphBar(args) {
@@ -126,7 +144,7 @@ function graphCycle(args) {
             },
             type: 'pie',
             center: ['50%', '50%'],
-            radius: ['50%', '70%'],
+            // radius: ['50%', '70%'],
             data: args[0],
             itemStyle: {
                 normal: {

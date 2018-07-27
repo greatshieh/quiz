@@ -1,10 +1,18 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
-var echart = require('../../utils/echarts.js')
+import * as echarts from '../../ec-canvas/echarts.js'
+
+var util = require('../../utils/echarts.js')
 
 const app = getApp()
 
 var scoreList = new Array()
+
+var lineGraph = null
+var pieGraph = null
+var radarGraph = null
+var stackGraph = null
+var searchData = new Array()
 
 Page({
 
@@ -18,9 +26,45 @@ Page({
         category_max: new Array(),
         category_score: new Array(),
         category: new Array(),
-        ec: {
-            // 将 lazyLoad 设为 true 后，需要手动初始化图表
-            lazyLoad: true
+        ecLine: {
+            onInit: function(canvas, width, height) {
+                lineGraph = echarts.init(canvas, null, {
+                    width: width,
+                    height: height
+                });
+                canvas.setChart(lineGraph);
+                return lineGraph;
+            }
+        },
+        ecPie: {
+            onInit: function(canvas, width, height) {
+                pieGraph = echarts.init(canvas, null, {
+                    width: width,
+                    height: height
+                });
+                canvas.setChart(pieGraph);
+                return pieGraph;
+            }
+        },
+        ecRadar: {
+            onInit: function(canvas, width, height) {
+                radarGraph = echarts.init(canvas, null, {
+                    width: width,
+                    height: height
+                });
+                canvas.setChart(radarGraph);
+                return radarGraph;
+            }
+        },
+        ecStack: {
+            onInit: function(canvas, width, height) {
+                stackGraph = echarts.init(canvas, null, {
+                    width: width,
+                    height: height
+                });
+                canvas.setChart(stackGraph);
+                return stackGraph;
+            }
         }
     },
 
@@ -50,12 +94,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        // 获取组件
-        this.graphLine = this.selectComponent('#mychart-dom-line');
-        this.graphCycle = this.selectComponent('#mychart-dom-pie');
-        this.graphRadar = this.selectComponent('#mychart-dom-radar');
-        this.graphStack = this.selectComponent('#mychart-dom-stack');
-        // 读取用户信息
         this.readStorage()
 
         // 获取成绩信息
@@ -66,13 +104,15 @@ Page({
                 this.setData({
                     total: data[0]
                 })
+                
                 this.parseResult(data)
 
-                // 初始化图表
-                echart.init_chart(this.graphLine, echart.graphLine, ['成绩趋势图', this.data.cnt, data[3]]);
-                echart.init_chart(this.graphCycle, echart.graphCycle, [data[4]]);
-                echart.init_chart(this.graphRadar, echart.graphRadar, [this.data.category_max, this.data.category_score]);
-                echart.init_chart(this.graphStack, echart.graphStack, [this.data.category, this.data.cnt, data[6]]);
+                searchData = data
+
+                lineGraph.setOption(this.lineOption())
+                pieGraph.setOption(this.pieOption())
+                radarGraph.setOption(this.radarOption())
+                stackGraph.setOption(this.stackOption())
             }
         })
     },
@@ -112,4 +152,19 @@ Page({
         })
     },
 
+    lineOption: function() {
+        return util.graphLine(["成绩趋势图", this.data.cnt, searchData[3]])
+    },
+
+    pieOption: function() {
+        return util.graphCycle([searchData[4]])
+    },
+
+    radarOption: function() {
+        return util.graphRadar([this.data.category_max, this.data.category_score])
+    },
+
+    stackOption: function() {
+        return util.graphStack([this.data.category, this.data.cnt, searchData[6]])
+    }
 });

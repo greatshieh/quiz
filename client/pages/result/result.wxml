@@ -1,7 +1,10 @@
-<wxs src="result.wxs" module="module"/>
-
+<wxs src="result.wxs" module="module" />
 <view class='section'>
-
+    <view class='row'>
+        <text>一共挑战:</text>
+        <text class='score'>{{cnt}}</text>
+        <text>次</text>
+    </view>
     <view class='row'>
         <text>本次挑战的成绩为:</text>
         <text class='score'>{{score}}</text>
@@ -14,18 +17,34 @@
     </view>
 
     <view class='row'>
-        <text class='comment'>这次考试中，{{module.category(category_score)[2]}}做的非常好,{{module.category(category_score)[1]}}做的还不错,{{module.category(category_score)[0]}}还需要提高。</text>
+        <text>测试总结</text>
+    </view>
+
+    <view class='summary'>
+        <text>这次考试中</text>
+        <view wx:if="{{module.category(category_score)[2].length > 0}}">
+            <text wx:for="{{module.category(category_score)[2]}}" wx:for-item="i">,{{i}}</text>
+            <text>做的非常好</text>
+        </view>
+        <view wx:if="{{module.category(category_score)[1].length > 0}}">
+            <text wx:for="{{module.category(category_score)[1]}}" wx:for-item="j">,{{j}}</text>
+            <text>做的还不错</text>
+        </view>
+        <view wx:if="{{module.category(category_score)[0].length > 0}}">
+            <text wx:for="{{module.category(category_score)[0]}}" wx:for-item="k">,{{k}}</text>
+            <text>还需要提高。</text>
+        </view>
     </view>
 
     <view class='row'>
-        <text>一共挑战:</text>
-        <text class='score'>{{cnt}}</text>
-        <text>次</text>
+        <text style='font-size:100rpx'>盛年不重来，</text>
+        <text style='font-size:100rpx'>一日难再晨。</text>
+        <text style='font-size:30rpx'>愿你每一天都能有所收获， 记住， 珍惜现在， 方能挑战未来！</text>
     </view>
 
     <view class='btn'>
-        <button size='mini' type='primary' bindtap='onShareAppMessage'>炫耀一下</button>
-        <button size='mini' type='primary' bindtap='backtochallenge'>再次挑战</button>
-        <button size='mini' type='primary' bindtap='backtoindex'>返回首页</button>
+        <button size='defautl' type='primary' bindtap='onShareAppMessage'>炫耀一下</button>
+        <button size='defautl' type='primary' bindtap='backtochallenge'>再次挑战</button>
+        <button size='defautl' type='primary' bindtap='backtoindex'>返回首页</button>
     </view>
 </view>
